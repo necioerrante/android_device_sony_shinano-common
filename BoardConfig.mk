@@ -36,10 +36,10 @@ BOARD_RAMDISK_OFFSET     := 0x02000000
 BOARD_KERNEL_BOOTIMG := true
 TARGET_NO_SEPARATE_RECOVERY := true
 BOARD_CUSTOM_BOOTIMG := true
+BOARD_CUSTOM_BOOTIMG_MK := device/sony/shinano-common/boot/custombootimg.mk
 BOARD_KERNEL_SEPARATED_DT := true
 TARGET_DTB_EXTRA_FLAGS := --force-v2
-BOARD_CUSTOM_BOOTIMG_MK := device/sony/shinano-common/boot/custombootimg.mk
-BOARD_MKBOOTIMG_ARGS  := --ramdisk_offset 0x02000000 --tags_offset 0x01E00000
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 
 BOARD_KERNEL_CMDLINE := androidboot.hardware=shinano androidboot.selinux=permissive
 BOARD_KERNEL_CMDLINE += user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
@@ -111,7 +111,8 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 
 # TWRP flags
-DEVICE_RESOLUTION := 1080x1920
+#TW_THEME := portrait_hdpi
+DEVICE_RESOLUTION := 720x1280
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
 TW_HAS_NO_RECOVERY_PARTITION := true
@@ -133,13 +134,3 @@ TW_BRIGHTNESS_PATH := /sys/class/leds/wled:backlight/brightness
 TW_MAX_BRIGHTNESS := 4095
 TW_NO_USB_STORAGE := true
 TW_NO_SCREEN_BLANK := true
-
-# MultiROM config. MultiROM also uses parts of TWRP config
-# MR_INPUT_TYPE := type_b
-# MR_INIT_DEVICES := device/sony/shinano-common/multirom/init_devices.c
-# MR_DPI := xhdpi
-# MR_KEXEC_DTB := true
-# MR_DPI_FONT := 340
-# MR_FSTAB := device/sony/shinano-common/multirom/twrp.fstab
-# MR_USE_MROM_FSTAB := true
-# MR_KEXEC_MEM_MIN := 0x20000000
