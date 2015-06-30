@@ -134,3 +134,26 @@ TW_BRIGHTNESS_PATH := /sys/class/leds/wled:backlight/brightness
 TW_MAX_BRIGHTNESS := 4095
 TW_NO_USB_STORAGE := true
 TW_NO_SCREEN_BLANK := true
+
+# SELinux
+include device/qcom/sepolicy/sepolicy.mk
+
+BOARD_SEPOLICY_DIRS += \
+    device/sony/shinano-common/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    addrsetup.te \
+    device.te \
+    file.te \
+    property.te \
+    sct.te \
+    sensors.te \
+    service.te \
+    system_app.te \
+    tad.te \
+    ta_qmi.te \
+    thermanager.te \
+    timekeep.te \
+    file_contexts \
+    property_contexts \
+    service_contexts
